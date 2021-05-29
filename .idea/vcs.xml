@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="VcsDirectoryMappings">
+    <mapping directory="$PROJECT_DIR$/Algorithm" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/Attendance-check" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/BroongBroong" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/Gual" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/KaKao" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/LIbrary" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/Maze" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/Mm" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/Node-js-Practice" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/Python" vcs="Git" />
+  </component>
+</project>
