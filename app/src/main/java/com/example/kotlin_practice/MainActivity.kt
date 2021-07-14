@@ -1,40 +1,29 @@
 package com.example.kotlin_practice
-import android.os.AsyncTask
 import android.os.Bundle
+import android.widget.Button
+import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 
-import java.io.BufferedReader
-import java.net.HttpURLConnection
-import java.io.InputStreamReader
-import java.net.URL
-
 class MainActivity : AppCompatActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main);
-        JSONTask().execute("http://gual.cafe24app.com/")
-    }
-    class JSONTask : AsyncTask<String, String, String>() {
-        override fun doInBackground(vararg params: String?): String? {
-            // ...
-            val url = params[0]
-            val obj = URL(url)
-            with(obj.openConnection() as HttpURLConnection) {
-                // optional default is GET
-                requestMethod = "GET"
-                println("\nSending 'GET' request to URL : $url")
-                println("Response Code : $responseCode")
-                BufferedReader(InputStreamReader(inputStream)).use {
-                    var response = it.readText()
-                    println("response = "+response)
-                    return response
+        setContentView(R.layout.activity_main)
+
+        val btn = findViewById<Button>(R.id.httpTest)
+        val txt = findViewById<TextView>(R.id.textView)
+
+        btn.setOnClickListener {
+            VolleyService.testVolley(this) { testSuccess ->
+                if (testSuccess) {
+                    Toast.makeText(this, "통신 성공!", Toast.LENGTH_LONG).show()
+                 
+
+                } else {
+                    Toast.makeText(this, "통신 실패...!", Toast.LENGTH_LONG).show()
                 }
             }
-            return null
-        }
-        override fun onPostExecute(result: String?) {
-            super.onPostExecute(result)
-            println("결과 = "+result)
         }
     }
 }
