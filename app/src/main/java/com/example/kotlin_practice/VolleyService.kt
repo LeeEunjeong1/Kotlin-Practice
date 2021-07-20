@@ -2,25 +2,29 @@ package com.example.kotlin_practice
 
 import android.content.Context
 import android.util.Log
+import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import com.android.volley.Response
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import org.json.JSONObject
 
+
 object VolleyService {
 
     val testUrl = "http://gual.cafe24app.com/"
-
-
+    var myJson =""
+    val requestBody = myJson.toString()
     fun testVolley(context: Context, success: (Boolean) -> Unit) {
 
-        val myJson = JSONObject()
-        val requestBody = myJson.toString()
+
         /* myJson에 아무 데이터도 put 하지 않았기 때문에 requestBody는 "{}" 이다 */
 
         val testRequest = object : StringRequest(Method.GET, testUrl , Response.Listener { response ->
             println("서버 Response 수신: $response")
             success(true)
+            myJson = response.toString()
+            println(response)
 
         }, Response.ErrorListener { error ->
             Log.d("ERROR", "서버 Response 가져오기 실패: $error")
@@ -31,6 +35,7 @@ object VolleyService {
             }
 
             override fun getBody(): ByteArray {
+
                 return requestBody.toByteArray()
             }
             /* getBodyContextType에서는 요청에 포함할 데이터 형식을 지정한다.

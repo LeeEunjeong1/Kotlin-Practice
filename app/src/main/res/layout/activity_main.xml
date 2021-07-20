@@ -21,7 +21,23 @@
             android:id="@+id/httpTest"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="Volley"
             />
+
+        <EditText
+            android:id="@+id/uid"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <EditText
+            android:id="@+id/email"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <Button
+            android:id="@+id/retrofit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Retrofit" />
 
     </LinearLayout>
 
