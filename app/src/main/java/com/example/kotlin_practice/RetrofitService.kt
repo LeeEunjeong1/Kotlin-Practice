@@ -7,13 +7,16 @@ data class ResponseDTO(var result:String? = null)
 
 interface RetrofitService{
 
+
+    @GET("/")
+    fun getRequest() : Call<ResponseDTO>
     //post
     @FormUrlEncoded
     @POST("/test")
-    fun postRequest(@Field("uname") uname: String,
+    fun postRequest(@Field("uname") uid: String,
                     @Field("email") email: String): Call<ResponseDTO>
 
     //post2
     @POST("/{path}")
-    fun testRequest(@Path("path")path:String, @Body parameters: HashMap<String, Any>): Call<ResponseDTO>
+    fun testRequest(@Path("path")path:String, @Body parameters: HashMap<String, String>): Call<ResponseDTO>
 }

@@ -8,10 +8,13 @@ import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.sample.gual.MainActivity2
 import com.sample.gual.ResponseDTO
 import com.sample.gual.RetrofitService
+import org.json.JSONException
+import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -47,6 +50,9 @@ class MainActivity : AppCompatActivity() {
                     Toast.makeText(this, "통신 실패...!", Toast.LENGTH_LONG).show()
                 }
             }
+
+
+
         }
     }
 
@@ -54,29 +60,26 @@ class MainActivity : AppCompatActivity() {
         var uid = findViewById<EditText>(R.id.uid).toString()
         var email = findViewById<EditText>(R.id.email).toString()
 
-        findViewById<Button>(R.id.retrofit).setOnClickListener {
-            var params: HashMap<String, Any> = HashMap<String, Any>()
-            params.put("uid", uid)
-            params.put("email", email)
+        var params:HashMap<String, String> = HashMap<String, String>()
+        params.put("uid", uid)
+        params.put("email", email)
 
-            server?.testRequest("test", params)?.enqueue(object : Callback<ResponseDTO> {
-                override fun onFailure(call: Call<ResponseDTO>?, t: Throwable?) {
-                    Log.e("Retrofit", t.toString())
-                }
+        server?.testRequest("/login", params)?.enqueue(object : Callback<ResponseDTO>{
+            override fun onFailure(call: Call<ResponseDTO>?, t: Throwable?) {
+                Log.e("Retrofit", t.toString())
+            }
 
-                override fun onResponse(
-                    call: Call<ResponseDTO>?,
-                    response: Response<ResponseDTO>?
-                ) {
-                    var res: ResponseDTO? = response?.body()
-                    Log.d("Retrofit", res?.result.toString())
-                }
+            override fun onResponse(call: Call<ResponseDTO>?, response: Response<ResponseDTO>?) {
+                var res: ResponseDTO? = response?.body()
 
-            })
+                Log.d("Retrofit", res?.result.toString())
 
-            val intent = Intent(this, MainActivity2::class.java)
-            startActivity(intent)
-        }
+            }
+        })
+
+
 
     }
+
+
 }
